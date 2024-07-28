@@ -2,7 +2,7 @@ let cities : any;
 
 export async function fetchData(): Promise<void> {
     try {
-        const response = await fetch('/slovakia-cities.geojson');
+        const response = await fetch(`${import.meta.env.BASE_URL}slovakia-cities.geojson`);
         
         if (!response.ok) {
             throw new Error('Failed to fetch GeoJSON file');

@@ -30,45 +30,22 @@
             <div class="mr-2 w-full max-w-56">
               <div v-if="filterType !== 'all'" class="relative">
                 <label class="text-cc-purple capitalize">{{ filterType }}</label>
-                <input
-                  type="text"
-                  v-model="search"
-                  :placeholder="`Search ${filterType}`"
-                  class="p-1 border-none w-full bg-cc-dark-purple focus:outline-none text-xl"
-                  @focus="showDropdown = true"
-                  @blur="showDropdown = false"
-                  @input="showDropdown = true"
-                />
+                <input type="text" v-model="search" :placeholder="`Search ${filterType}`" class="p-1 border-none w-full bg-cc-dark-purple focus:outline-none text-xl" @focus="showDropdown = true" @blur="showDropdown = false" @input="showDropdown = true"/>
                 <div class="w-full h-1 bg-cc-purple"></div>
-                <ul
-                  v-if="showDropdown && filteredOptions.length"
-                  class="absolute left-0 right-0 bg-cc-purple border-none mt-1 rounded shadow-lg max-h-60 overflow-y-auto"
-                >
-                  <li
-                    v-for="option in filteredOptions"
-                    :key="option"
-                    class="p-2 cursor-pointer hover:bg-cc-light-purple"
-                    @mousedown="selectOption(option)"
-                  >
-                    {{ option }}
-                  </li>
+                <ul v-if="showDropdown && filteredOptions.length" class="absolute left-0 right-0 bg-cc-purple border-none mt-1 rounded shadow-lg max-h-60 overflow-y-auto z-10">
+                  <li v-for="option in filteredOptions" :key="option" class="p-2 cursor-pointer hover:bg-cc-light-purple" @mousedown="selectOption(option)">{{ option }}</li>
                 </ul>
               </div>
             </div>
           </div>
-          <button
-            @click="getTown"
-            class="bg-cc-light-purple hover:bg-cc-purple text-white text-2xl font-semibold py-4 px-8 rounded-xl m-2 shadow-md shadow-gray-950"
-          >
-            Random Town
-          </button>
+          <button @click="getTown" class="bg-cc-light-purple hover:bg-cc-purple text-white text-2xl font-semibold py-4 px-8 rounded-xl m-2 shadow-md shadow-gray-950">Random Town</button>
         </div>
       </div>
 
       <div class="md:w-1 md:h-full bg-cc-purple"></div>
 
       <div class="flex-grow p-4 min-h-60 min-w-80 bg-cc-dark-purple">
-        <div id="map" class="bg-black h-full rounded-lg"></div>
+        <div id="map" class="bg-black h-full rounded-lg z-0"></div>
       </div>
     </div>
   </div>
@@ -91,7 +68,7 @@
   let map: Map
   let currentMarker: Marker | null = null
   const customIcon = L.icon({
-    iconUrl: '/custom_pin.png',
+    iconUrl: `${import.meta.env.BASE_URL}custom_pin.png`,
     iconSize: [34, 60],
     iconAnchor: [17, 60],
     tooltipAnchor: [17, -45],
