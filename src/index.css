@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.picked-town-text {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio-button {
+    @apply appearance-none w-4 h-4 bg-cc-purple border-4 border-cc-purple text-white rounded-full checked:bg-white cursor-pointer
+}
